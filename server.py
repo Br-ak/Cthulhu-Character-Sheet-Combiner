@@ -5,7 +5,8 @@ from werkzeug.utils import secure_filename
 import main
 
 UPLOAD_FOLDER = r"/Users/nathi/OneDrive/Desktop/Pdf Parser Python/uploads/"
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'pdf'}
+FILE_PATHS = []
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -31,6 +32,8 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            FILE_PATHS.append(UPLOAD_FOLDER + filename)
+            print(f"File Paths: {FILE_PATHS}")
             return redirect(url_for('upload_file', name=filename))
     return '''
     <!doctype html>
@@ -40,6 +43,15 @@ def upload_file():
       <input type=file name=file>
       <input type=submit value=Upload>
     </form>
+    '''
+
+@app.route('/combine', methods=['GET'])
+def combine_files():
+    main.test(FILE_PATHS)
+    return '''
+    <!doctype html>
+    <title>I'm form a different file</title>
+    <h1>I'm form a different file</h1>
     '''
 
 if __name__ == "__main__":

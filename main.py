@@ -7,11 +7,18 @@ from PyPDF2 import PdfReader
 # path = '/Users/nathi/Downloads/Nigel Carrington.pdf'
 # path = '/Users/nathi/Downloads/Jerry_Johnson 12.30.24.pdf'
 # path = '/Users/nathi/Downloads/Arthur_Cowell (3).pdf'
-# path = '/Users/nathi/Downloads/Shady_McMan.pdf'
+path = '/Users/nathi/Downloads/Shady_McMan.pdf'
 # path = '/Users/nathi/Downloads/_Kevin_Hornback-1.pdf'
+VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'STR', 'DEX', 'INT',
+                      'CON', 'APP', 'POW', 'SIZ', 'EDU', 'MOV']
+def test(paths):
+    print(f"Hello here is that var: {paths}")
+    info = []
+    for path in paths:
+        parse(path)
 
 
-def init(path):
+def parse(path):
     pdf = open(path, 'rb')
     reader = PyPDF2.PdfReader(pdf)
     info = reader.metadata
@@ -19,6 +26,7 @@ def init(path):
     # print(reader.pages[0].extract_text)
 
     results = []
+    
     for i in range(0, len(reader.pages)):
         text = reader.pages[i].extract_text()
         results.append(text)
@@ -28,9 +36,8 @@ def init(path):
 
     if form_values:
         for field, value in form_values.items():
-            print(f"Field Name: {field}, Value: {value}")
+            print(f"{field}: {value}")
     else:
-        results = []
         for i in range(0, len(reader.pages)):
             text = reader.pages[i].extract_text()
             results.append(text)
@@ -46,6 +53,9 @@ def extract_form_values(path, reader):
         field_values = {}
 
         for field_name, field_data in form_fields.items():
-            field_values[field_name] = field_data.get('/V', None)
+            if field_name in VALUES_TO_KEEP:
+                field_values[field_name] = field_data.get('/V', None)
 
         return field_values
+
+parse(path)
