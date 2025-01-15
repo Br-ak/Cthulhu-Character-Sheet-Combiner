@@ -1,4 +1,4 @@
-import PyPDF2
+import PyPDF2, json, os
 from PyPDF2 import PdfReader
 
 # path = '/Users/nathi/Downloads/Arthur_Cowell-12_30.pdf'
@@ -7,42 +7,48 @@ from PyPDF2 import PdfReader
 # path = '/Users/nathi/Downloads/Nigel Carrington.pdf'
 # path = '/Users/nathi/Downloads/Jerry_Johnson 12.30.24.pdf'
 # path = '/Users/nathi/Downloads/Arthur_Cowell (3).pdf'
-path = '/Users/nathi/Downloads/Shady_McMan.pdf'
+# path = '/Users/nathi/Downloads/Shady_McMan.pdf'
 # path = '/Users/nathi/Downloads/_Kevin_Hornback-1.pdf'
 VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'STR', 'DEX', 'INT',
                       'CON', 'APP', 'POW', 'SIZ', 'EDU', 'MOV']
-def test(paths):
-    print(f"Hello here is that var: {paths}")
-    info = []
+CHARACTER_VALUES = {}
+#absolute_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+
+def init(paths):
+    CHARACTER_VALUES.clear()
     for path in paths:
         parse(path)
+
+    json_path = "data.json"
+    if os.path.exists("static\data.json"):
+        os.remove("static\data.json")
+        print(f"File '{json_path}' deleted")
+    with open('static\data.json', 'w') as f:
+        json.dump(CHARACTER_VALUES, f)
 
 
 def parse(path):
     pdf = open(path, 'rb')
     reader = PyPDF2.PdfReader(pdf)
-    info = reader.metadata
-    # print(info)
-    # print(reader.pages[0].extract_text)
-
     results = []
     
     for i in range(0, len(reader.pages)):
         text = reader.pages[i].extract_text()
         results.append(text)
 
-    # print(results)
     form_values = extract_form_values(path, reader)
-
-    if form_values:
-        for field, value in form_values.items():
-            print(f"{field}: {value}")
-    else:
-        for i in range(0, len(reader.pages)):
-            text = reader.pages[i].extract_text()
-            results.append(text)
-        for value in results:
-            print(f"{value}")
+    CHARACTER_VALUES[len(CHARACTER_VALUES)] = form_values
+    
+    # if form_values:
+    #     for field, value in form_values.items():
+    #         print(f"{field}: {value}")
+    # else:
+    #     pass
+    #     # for i in range(0, len(reader.pages)):
+    #     #     text = reader.pages[i].extract_text()
+    #     #     results.append(text)
+    #     # for value in results:
+    #     #     print(f"{value}")
 
 def extract_form_values(path, reader):
     with open(path, 'rb') as file:
@@ -54,8 +60,8 @@ def extract_form_values(path, reader):
 
         for field_name, field_data in form_fields.items():
             if field_name in VALUES_TO_KEEP:
-                field_values[field_name] = field_data.get('/V', None)
-
+                if field_name == "Investigator_Name":
+                    field_values["Investigators_Name"] = field_data.get('/V', None)
+                else:
+                    field_values[field_name] = field_data.get('/V', None)
         return field_values
-
-parse(path)

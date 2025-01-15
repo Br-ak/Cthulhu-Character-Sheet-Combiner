@@ -1,0 +1,25 @@
+<!doctype html>
+<head>
+  <script type='text/javascript' src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+  
+</head>
+<body>
+  <title>Upload new File</title>
+  <h1>Upload new File</h1>
+  <form method=post enctype=multipart/form-data>
+    <input type=file name=file multiple/> 
+    <input type=submit value=Upload>
+  </form>
+
+  <h2 hidden="true" id="title">Uploaded Files</h2>
+    <ol id="file_list">
+      
+    </ol>
+
+    <form action = "/combine" method="GET">
+      <input type="submit" value="Combine pdfs" />
+  </form>
+  <script type="text/javascript">
+      update_table({{data|tojson}})
+  </script>
+</body>
