@@ -1,10 +1,10 @@
 import os
+import flask_cors 
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
-
 import main
 
-UPLOAD_FOLDER = r"/Users/nathi/OneDrive/Desktop/Pdf Parser Python/uploads/"
+UPLOAD_FOLDER = r"uploads/"
 ALLOWED_EXTENSIONS = {'pdf'}
 FILE_PATHS = []
 FILES_JSON = {}
@@ -12,6 +12,7 @@ FILE_COUNT = 0
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+flask_cors.CORS(app)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -20,6 +21,8 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
+        if request.files['file'].filename == '':
+            return 'No selected file'
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -49,5 +52,18 @@ def combine_files():
     main.init(FILE_PATHS)
     return render_template('combined.html') 
 
+@app.route('/DeleteUploads', methods=['GET'])
+def delete_files():
+    folder = "uploads/"
+    if os.path.exists(folder):
+        for filename in os.listdir(folder):
+            file_path = os.path.join(folder, filename)
+            if os.fsdecode(file_path).endswith(".pdf"):
+                os.remove(file_path)
+                print(f"File '{file_path}' deleted")
+    FILE_PATHS.clear()
+    FILES_JSON.clear()
+    return render_template('index.html', data=FILES_JSON)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

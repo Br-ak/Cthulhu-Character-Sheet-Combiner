@@ -13,4 +13,8 @@ function update_table(files){
             fileList.appendChild(listItem); // Append it to the <ol>
         }
     }
+    else{
+        fileList.hidden = true
+        title.hidden = true
+    }
 }

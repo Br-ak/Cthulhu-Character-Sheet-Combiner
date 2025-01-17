@@ -16,9 +16,15 @@
       
     </ol>
 
-    <form action = "/combine" method="GET">
-      <input type="submit" value="Combine pdfs" />
+
+  <form action = "/combine" method="GET">
+      <input type="submit" value="Combine Pdfs" />
   </form>
+  <form action = "/DeleteUploads" method="GET">
+    <input type="submit" value="Delete uploaded pdfs" />
+  </form>
+
+
   <script type="text/javascript">
       update_table({{data|tojson}})
   </script>

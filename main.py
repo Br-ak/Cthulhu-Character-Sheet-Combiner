@@ -1,18 +1,8 @@
 import PyPDF2, json, os
-from PyPDF2 import PdfReader
 
-# path = '/Users/nathi/Downloads/Arthur_Cowell-12_30.pdf'
-# path = '/Users/nathi/Downloads/Shady_McMan 12.30.2024.pdf' # different format, non editable
-# path = '/Users/nathi/Downloads/Kevin_Hornback13.pdf' # different format, non editable
-# path = '/Users/nathi/Downloads/Nigel Carrington.pdf'
-# path = '/Users/nathi/Downloads/Jerry_Johnson 12.30.24.pdf'
-# path = '/Users/nathi/Downloads/Arthur_Cowell (3).pdf'
-# path = '/Users/nathi/Downloads/Shady_McMan.pdf'
-# path = '/Users/nathi/Downloads/_Kevin_Hornback-1.pdf'
 VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'STR', 'DEX', 'INT',
                       'CON', 'APP', 'POW', 'SIZ', 'EDU', 'MOV']
 CHARACTER_VALUES = {}
-#absolute_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 
 def init(paths):
     CHARACTER_VALUES.clear()
@@ -38,17 +28,7 @@ def parse(path):
 
     form_values = extract_form_values(path, reader)
     CHARACTER_VALUES[len(CHARACTER_VALUES)] = form_values
-    
-    # if form_values:
-    #     for field, value in form_values.items():
-    #         print(f"{field}: {value}")
-    # else:
-    #     pass
-    #     # for i in range(0, len(reader.pages)):
-    #     #     text = reader.pages[i].extract_text()
-    #     #     results.append(text)
-    #     # for value in results:
-    #     #     print(f"{value}")
+    pdf.close()
 
 def extract_form_values(path, reader):
     with open(path, 'rb') as file:
