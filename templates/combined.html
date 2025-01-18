@@ -1,27 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Investigator Stats</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
 <body>
-    <table>
-       <thead>
-          <tr>
-             <th>Investigator Name</th>
-             <th>Current Sanity</th>
-             <th>Current HP</th>
-             <th>Movement</th>
-             <th>DEX</th>
-             <th>STR</th>
-             <th>CON</th>
-             <th>POW</th>
-             <th>INT</th>
-             <th>SIZ</th>
-             <th>APP</th>
-             <th>EDU</th>
-          </tr>
-       </thead>
-       <tbody id="data-output">
-          <!-- Prodcuts from javascript file in here. -->
-       </tbody>
-    </table>
-   <form action = "/" method="GET">
-      <input type="submit" value="Upload More Pdfs" />
+   <div class="main-container">
+   <!-- Existing content -->
+   <h1>Quick Reference</h1>
+   <table>
+      <thead>
+         <tr>
+         <th>Investigator Name</th>
+         <th>Current Sanity</th>
+         <th>Current HP</th>
+         <th>Movement</th>
+         <th>DEX</th>
+         <th>STR</th>
+         <th>CON</th>
+         <th>POW</th>
+         <th>INT</th>
+         <th>SIZ</th>
+         <th>APP</th>
+         <th>EDU</th>
+         </tr>
+      </thead>
+      <tbody id="data-output">
+         <!-- Data will populate here via JavaScript -->
+      </tbody>
+   </table>
+   <div class="char_tooltip" id="char_tooltip">
+         
+   </div> 
+
+   <form action="/" method="GET">
+      <input type="submit" value="Upload More PDFs" />
    </form>
-  
-    <script type='text/javascript' src="{{ url_for('static', filename='scripts/combined.js') }}"></script> <!-- Link to the javascript file -->
+
+   <!-- <br>
+   <h1>Investigator Skills WIP</h1>
+   <div class="tooltip-section">
+      <div class="tooltip-box" data-tooltip="Tooltip 1">Accounting 05%</div>
+      <div class="tooltip-box" data-tooltip="Tooltip 2">Firearms(Handgun) 20%</div>
+      <div class="tooltip-box" data-tooltip="Tooltip 3">Persuade 10%</div>
+      <div class="tooltip-box" data-tooltip="Tooltip 4">Appraise 05%</div>
+      <div class="tooltip-box" data-tooltip="Tooltip 5">Firearms(Rifle/Shotgun) 25%</div>
+      <div class="tooltip-box" data-tooltip="Tooltip 6">Pilot(Default) 01%</div>
+      <div class="tooltip-box" data-tooltip="Tooltip 6">Archaeology 01%</div>
+   </div>
+   
+
+      <div class="tooltip" id="tooltip">
+         
+      </div> -->
+   </div>
+ <script type='text/javascript' src="{{ url_for('static', filename='scripts/combined.js') }}"></script>
+</body>
+</html>

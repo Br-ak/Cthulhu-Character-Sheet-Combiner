@@ -1,31 +1,36 @@
 <!doctype html>
+<html lang="en">
 <head>
-  <script type='text/javascript' src="{{ url_for('static', filename='scripts/index.js') }}"></script>
-  
+  <title>Character Sheet Parser</title>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
-  <title>Upload new File</title>
-  <h1>Upload new File</h1>
-  <form method=post enctype=multipart/form-data>
-    <input type=file name=file multiple/> 
-    <input type=submit value=Upload>
-  </form>
+  <div class="main-container">
+      <h1>Call of Cthulhu Character Sheet Parsing</h1>
+      <h2>Upload Files</h2>
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple />
+        <input type="submit" value="Upload" />
+      </form>
 
-  <h2 hidden="true" id="title">Uploaded Files</h2>
-    <ol id="file_list">
-      
-    </ol>
+      <h2 hidden="true" id="title">Uploaded Files</h2>
+      <ol id="file_list">
+        <!-- Uploaded file list items will go here -->
+      </ol>
 
-
-  <form action = "/combine" method="GET">
-      <input type="submit" value="Combine Pdfs" />
-  </form>
-  <form action = "/DeleteUploads" method="GET">
-    <input type="submit" value="Delete uploaded pdfs" />
-  </form>
-
-
+      <div id="buttons">
+        <form action="/combine" method="GET">
+          <input type="submit" value="Combine Pdfs" />
+        </form>
+        <form action="/DeleteUploads" method="GET">
+          <input type="submit" value="Delete Uploaded Pdfs" />
+        </form>
+      </div>
+    </div>
   <script type="text/javascript">
-      update_table({{data|tojson}})
+    update_table({{data | tojson}});
   </script>
 </body>
+</html>
+

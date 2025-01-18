@@ -1,0 +1,217 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  #file_list {
+    margin: 0 auto;
+    padding: 25px;
+    list-style-type: decimal;
+    max-width: 400px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  #buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #buttons form {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+  }
+  
+  thead th {
+    background-color: #007bff;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 2px solid #0056b3;
+  }
+  
+  tbody td {
+    padding: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  form {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .tooltip-section {
+    display: grid; /* Use CSS Grid layout */
+    grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+    grid-gap: 20px; /* Space between grid items */
+    margin-top: 40px;
+    justify-items: center; /* Center items within each grid cell */
+  }
+  
+
+
+
+  .tooltip-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center; /* Center align the content */
+    border: none; /* Remove the border */
+  }
+  
+  .tooltip {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    pointer-events: none;
+    white-space: normal;
+    z-index: 1000;
+    display: none;
+    max-width: 350px;
+  }
+  
+  .tooltip-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .tooltip-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  
+  .tooltip-table th, .tooltip-table td {
+    padding: 5px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .tooltip-table th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .tooltip-table td {
+    background-color: #f4f4f4;
+  }
+
+  body {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: flex-start; /* Aligns content at the top of the page */
+    min-height: 100vh; /* Ensures the page takes up the full viewport height */
+    margin: 0; /* Removes default margins */
+    background-color: #f0f0f0; /* Optional: Add a background color */
+  }
+  
+  .main-container {
+    width: 100%;
+    max-width: 1200px; /* Adjust the max width of the content */
+    margin: 0 20px; /* Add margins on both sides */
+    padding: 20px; /* Optional: Add padding inside the content area */
+    background-color: #fff; /* Optional: Background color for the main container */
+    box-sizing: border-box; /* Includes padding in the element's total width and height */
+  }
+
+  /* Style for the simple tooltip */
+.char_tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: none; /* Hidden by default */
+  pointer-events: none; /* Prevents the tooltip from blocking interactions */
+  z-index: 1000;
+}
+
+td {
+  position: relative; /* Ensure tooltips are positioned correctly */
+}

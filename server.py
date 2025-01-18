@@ -63,7 +63,7 @@ def delete_files():
                 print(f"File '{file_path}' deleted")
     FILE_PATHS.clear()
     FILES_JSON.clear()
-    return render_template('index.html', data=FILES_JSON)
+    return redirect(url_for('upload_file', data=FILES_JSON))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
