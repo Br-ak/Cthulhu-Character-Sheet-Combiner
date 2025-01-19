@@ -9,11 +9,12 @@ def init(paths):
     for path in paths:
         parse(path)
 
-    json_path = "data.json"
-    if os.path.exists("static\data.json"):
-        os.remove("static\data.json")
+    json_path = os.path.join("static", "data.json")
+    if os.path.exists(json_path):
+        os.remove(json_path)
         print(f"File '{json_path}' deleted")
-    with open('static\data.json', 'w') as f:
+    
+    with open(json_path, 'w') as f:
         json.dump(CHARACTER_VALUES, f)
 
 

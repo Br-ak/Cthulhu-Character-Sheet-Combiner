@@ -215,3 +215,25 @@ body {
 td {
   position: relative; /* Ensure tooltips are positioned correctly */
 }
+
+.table-sortable th {
+  cursor: pointer;
+}
+
+.table-sortable .th-sort-asc::after{
+  content: "\25b4";
+}
+
+.table-sortable .th-sort-desc::after{
+  content: "\25be";
+}
+
+.table-sortable .th-sort-desc::after,
+.table-sortable .th-sort-asc::after {
+  margin-left: 5px;
+}
+
+.table-sortable .th-sort-desc,
+.table-sortable .th-sort-asc {
+  background: rgba(0, 0, 0, 0.1);
+}
