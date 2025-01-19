@@ -28,7 +28,10 @@ def parse(path):
         results.append(text)
 
     form_values = extract_form_values(path, reader)
-    CHARACTER_VALUES[len(CHARACTER_VALUES)] = form_values
+    if form_values != None:
+        CHARACTER_VALUES[len(CHARACTER_VALUES)] = form_values
+    else:
+        CHARACTER_VALUES[len(CHARACTER_VALUES)] = "" # shows undefined
     pdf.close()
 
 def extract_form_values(path, reader):

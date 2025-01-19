@@ -30,9 +30,9 @@ def upload_file():
         files = request.files.getlist("file") 
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
-        print(files)
+        # print(files)
         for file in files: 
-            print(file)
+            # print(file)
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
