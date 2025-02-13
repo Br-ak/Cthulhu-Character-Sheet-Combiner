@@ -1,7 +1,7 @@
 import PyPDF2, json, os
 
-VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'STR', 'DEX', 'INT',
-                      'CON', 'APP', 'POW', 'SIZ', 'EDU', 'MOV']
+VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'CurrentLuck', 
+                  'STR', 'DEX', 'INT', 'CON', 'APP', 'POW', 'SIZ', 'EDU', 'MOV']
 CHARACTER_VALUES = {}
 
 def init(paths):
@@ -43,7 +43,9 @@ def extract_form_values(path, reader):
         field_values = {}
 
         for field_name, field_data in form_fields.items():
+            #print(field_name)
             if field_name in VALUES_TO_KEEP:
+                #print(field_name, " ", field_data)
                 if field_name == "Investigator_Name":
                     field_values["Investigators_Name"] = field_data.get('/V', None)
                 else:

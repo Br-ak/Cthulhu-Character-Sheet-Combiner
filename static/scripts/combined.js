@@ -12,8 +12,9 @@ fetch("/static/data.json")
         out += `
             <tr>
                 <td>${data.Investigators_Name}</td>
-                <td>${data.CurrentSanity}</td>
-                <td>${data.CurrentHP}</td>
+                <td contenteditable="true">${data.CurrentSanity}</td>
+                <td contenteditable="true">${data.CurrentHP}</td>
+                <td contenteditable="true">${data.CurrentLuck}</td>
                 <td>${data.MOV}</td>
                 <td class="tooltip-cell" data-tooltip="${data.DEX} / ${Math.floor(data.DEX / 2)} / ${Math.floor(data.DEX / 5)}">
                     <input type="checkbox" class="dex-checkbox" /> ${data.DEX}</td>
