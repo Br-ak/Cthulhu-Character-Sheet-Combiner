@@ -1,6 +1,6 @@
 import PyPDF2, json, os
 
-VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'CurrentLuck', 
+VALUES_TO_KEEP = ['Investigator_Name', 'Investigators_Name', 'CurrentHP', 'CurrentSanity', 'CurrentLuck', 'LuckTotal', 
                   'STR', 'DEX', 'INT', 'CON', 'APP', 'POW', 'SIZ', 'EDU', 'MOV']
 CHARACTER_VALUES = {}
 
@@ -46,8 +46,10 @@ def extract_form_values(path, reader):
             #print(field_name)
             if field_name in VALUES_TO_KEEP:
                 #print(field_name, " ", field_data)
-                if field_name == "Investigator_Name":
+                if field_name == "Investigator_Name": # edge case for certain character sheets
                     field_values["Investigators_Name"] = field_data.get('/V', None)
+                elif field_name == "LuckTotal": # edge case for certain character sheets
+                    field_values["CurrentLuck"] = field_data.get('/V', None)
                 else:
                     field_values[field_name] = field_data.get('/V', None)
         return field_values

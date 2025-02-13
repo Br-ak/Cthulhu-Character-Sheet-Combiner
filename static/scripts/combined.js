@@ -3,7 +3,6 @@ fetch("/static/data.json")
     return response.json();
 })
 .then(function(dataset){
-    //console.log(dataset);
     let placeholder = document.querySelector("#data-output");
     let out = "";
     for (const key in dataset){
@@ -12,8 +11,8 @@ fetch("/static/data.json")
         out += `
             <tr>
                 <td>${data.Investigators_Name}</td>
-                <td contenteditable="true">${data.CurrentSanity}</td>
-                <td contenteditable="true">${data.CurrentHP}</td>
+                <td onchange="myFunction()" contenteditable="true">${data.CurrentSanity}</td>
+                <td onchange="myFunction()" contenteditable="true">${data.CurrentHP}</td>
                 <td contenteditable="true">${data.CurrentLuck}</td>
                 <td>${data.MOV}</td>
                 <td class="tooltip-cell" data-tooltip="${data.DEX} / ${Math.floor(data.DEX / 2)} / ${Math.floor(data.DEX / 5)}">
@@ -49,7 +48,6 @@ fetch("/static/data.json")
             tooltip.style.display = 'none'; // Hide the tooltip when mouse leaves
         });
     });
-    //sortTableByColumn(document.querySelector("table"), 1, true);
 });
 
 function sortTableByColumn(table, column, asc = true) {
@@ -89,7 +87,29 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
     });
 });
 
-
+// add editable blank row for custom additions to ref
+function addRow(){
+    let placeholder = document.querySelector("#data-output");
+    let out = "";
+    out += `
+        <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""><input type="checkbox" class="dex-checkbox" /></td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+            <td contenteditable="true" class="tooltip-cell" data-tooltip=""</td>
+        </tr>
+    `;
+    placeholder.innerHTML += out;
+}
 
 
 // // Tooltip JavaScript
