@@ -14,6 +14,8 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 flask_cors.CORS(app)
 
+main.fileDeleteUploads()
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -54,16 +56,12 @@ def combine_files():
 
 @app.route('/DeleteUploads', methods=['GET'])
 def delete_files():
-    folder = "uploads/"
-    if os.path.exists(folder):
-        for filename in os.listdir(folder):
-            file_path = os.path.join(folder, filename)
-            if os.fsdecode(file_path).endswith(".pdf"):
-                os.remove(file_path)
-                print(f"File '{file_path}' deleted")
+    main.fileDeleteUploads() # delete files from uploads folder if any remain
     FILE_PATHS.clear()
     FILES_JSON.clear()
+
     return redirect(url_for('upload_file', data=FILES_JSON))
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)

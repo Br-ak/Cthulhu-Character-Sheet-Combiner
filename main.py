@@ -10,13 +10,26 @@ def init(paths):
         parse(path)
 
     json_path = os.path.join("static", "data.json")
-    if os.path.exists(json_path):
-        os.remove(json_path)
-        print(f"File '{json_path}' deleted")
+    fileDelete(json_path)
     
     with open(json_path, 'w') as f:
         json.dump(CHARACTER_VALUES, f)
 
+def fileDelete(path):
+    if os.path.exists(path):
+        os.remove(path)
+        print(f"File '{path}' deleted")
+    else:
+        print(f"File not found at `{path}`.")
+
+def fileDeleteUploads():
+    folder = "uploads/"
+    if os.path.exists(folder):
+        for filename in os.listdir(folder):
+            file_path = os.path.join(folder, filename)
+            if os.fsdecode(file_path).endswith(".pdf"):
+                fileDelete(file_path)
+                print(f"File '{file_path}' deleted")
 
 def parse(path):
     pdf = open(path, 'rb')
